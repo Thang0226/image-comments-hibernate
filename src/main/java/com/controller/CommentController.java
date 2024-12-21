@@ -1,6 +1,7 @@
 package com.controller;
 
 import com.model.Comment;
+import com.service.ICommentService;
 import com.service.IService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class CommentController {
 
     @Autowired
-    private IService commentService;
+    private ICommentService commentService;
 
     @GetMapping
     public String showComments(Model model) {
@@ -26,7 +27,7 @@ public class CommentController {
 
     @PostMapping("/add-comment")
     public String addComment(Comment comment, RedirectAttributes redirectAttributes) {
-        commentService.add(comment);
+        commentService.save(comment);
         redirectAttributes.addFlashAttribute("message", "New comment added");
         return "redirect:/img-of-the-day";
     }
@@ -36,7 +37,7 @@ public class CommentController {
         Comment comment = commentService.findById(id);
         int currentCount = comment.getLikeCount();
         comment.setLikeCount(currentCount + 1);
-        commentService.update(comment);
+        commentService.save(comment);
         redirectAttributes.addFlashAttribute("message", "Liked!");
         return "redirect:/img-of-the-day";
     }

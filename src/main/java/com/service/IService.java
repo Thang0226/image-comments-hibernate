@@ -4,14 +4,12 @@ import com.model.Comment;
 
 import java.util.List;
 
-public interface IService {
-    List<Comment> findAll();
+public interface IService <T> {
+    List<T> findAll();
 
-    void add(Comment comment);
+    void save(T comment);
 
-    Comment findById(int id);
-
-    void update(Comment comment);
+    T findById(int id);
 
     void remove(int id);
 }
