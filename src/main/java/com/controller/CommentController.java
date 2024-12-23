@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.Optional;
+
 @Controller
 @RequestMapping("/img-of-the-day")
 public class CommentController {
@@ -33,10 +35,14 @@ public class CommentController {
 
     @GetMapping("/{id}/like")
     public String likeComment(@PathVariable int id, RedirectAttributes redirectAttributes) {
-        Comment comment = commentService.findById(id);
-        int currentCount = comment.getLikeCount();
-        comment.setLikeCount(currentCount + 1);
-        commentService.save(comment);
+        Optional<Comment> comment = commentService.findById(id);
+        if (comment.isPresent()) {
+            Comment cm = comment.get();
+            int currentCount = cm.getLikeCount();
+            cm.setLikeCount(currentCount + 1);
+            commentService.save(cm);
+        }
+
         redirectAttributes.addFlashAttribute("message", "Liked!");
         return "redirect:/img-of-the-day";
     }

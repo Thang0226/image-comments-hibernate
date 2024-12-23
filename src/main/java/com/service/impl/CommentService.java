@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CommentService implements ICommentService {
@@ -22,12 +23,12 @@ public class CommentService implements ICommentService {
     private ICommentRepository commentRepository;
 
     @Override
-    public List<Comment> findAll() {
+    public Iterable<Comment> findAll() {
         return commentRepository.findAll();
     }
 
     @Override
-    public Comment findById(int id) {
+    public Optional<Comment> findById(int id) {
         return commentRepository.findById(id);
     }
 
@@ -38,6 +39,6 @@ public class CommentService implements ICommentService {
 
     @Override
     public void remove(int id) {
-        commentRepository.remove(id);
+        commentRepository.deleteById(id);
     }
 }
