@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 @Controller
@@ -28,6 +29,7 @@ public class CommentController {
 
     @PostMapping("/add-comment")
     public String addComment(Comment comment, RedirectAttributes redirectAttributes) {
+        comment.setDate(LocalDate.now());
         commentService.save(comment);
         redirectAttributes.addFlashAttribute("message", "New comment added");
         return "redirect:/img-of-the-day";

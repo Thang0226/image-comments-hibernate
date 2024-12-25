@@ -1,35 +1,29 @@
 package com.model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "comment")
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     private int point;
     private String author;
     private String feedback;
     private int likeCount;
+    private LocalDate date;
 
     public Comment() {
     }
 
-    public Comment(int id, int point, String author, String feedback, int likeCount) {
-        this.id = id;
-        this.point = point;
-        this.author = author;
-        this.feedback = feedback;
-        this.likeCount = likeCount;
-    }
-
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -63,5 +57,13 @@ public class Comment {
 
     public void setLikeCount(int likeNumber) {
         this.likeCount = likeNumber;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 }
