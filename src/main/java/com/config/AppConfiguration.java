@@ -33,7 +33,7 @@ import java.util.Properties;
 @ComponentScan(basePackages = "com")
 @EnableTransactionManagement
 @EnableJpaRepositories("com.repository")
-//@EnableAspectJAutoProxy(proxyTargetClass = true)
+@EnableAspectJAutoProxy(proxyTargetClass = true)
 public class AppConfiguration implements WebMvcConfigurer, ApplicationContextAware {
 	private ApplicationContext applicationContext;
 
