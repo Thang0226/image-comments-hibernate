@@ -1,7 +1,7 @@
 package com.model;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "comment")
@@ -14,7 +14,7 @@ public class Comment {
     private String author;
     private String feedback;
     private int likeCount;
-    private LocalDate date;
+    private LocalDateTime time;
 
     public Comment() {
     }
@@ -59,11 +59,11 @@ public class Comment {
         this.likeCount = likeNumber;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDateTime getTime() {
+        return time;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setTime(LocalDateTime time) {
+        this.time = time;
     }
 }

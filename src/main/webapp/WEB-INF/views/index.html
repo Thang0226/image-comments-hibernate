@@ -73,7 +73,7 @@
 <!-- Show comments area -->
 <div th:each="item : ${comments}">
     +<span th:text="${item.point}"></span>
-    : <span th:text="${item.date}"></span>
+    : <span th:text="${item.time}"></span>
     : <span th:text="${item.feedback}"></span>
     <br>
     <span th:text="${item.likeCount}"></span> likes
